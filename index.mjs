@@ -37,7 +37,7 @@ export const handler = async (event) => {
         const fileConfig = await downloadFile(url);
         await file.save(fileConfig);
         mg.messages.create(process.env.EMAIL_DOMAIN, {
-            from: `CSYE6225 <apoorva@${mailgunDomain}>`,
+            from: `CSYE6225 <apoorva@${process.env.EMAIL_DOMAIN}>`,
             to: [snsEmail],
             subject: "Assignment submission received",
             text: `Your submission was successfully received and verified at ${fileLocation}. Thank you.`,
@@ -52,7 +52,7 @@ export const handler = async (event) => {
         return res;
     } else {
         mg.messages.create(process.env.EMAIL_DOMAIN, {
-            from: `CSYE6225 <apoorva@${mailgunDomain}>`,
+            from: `CSYE6225 <apoorva@${process.env.EMAIL_DOMAIN}>`,
             to: [snsEmail],
             subject: "Assignment submission failed",
             text: "Your submission could not be downloaded. Please verify the URL and resubmit.",
